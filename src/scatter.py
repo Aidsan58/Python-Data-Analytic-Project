@@ -1,5 +1,4 @@
-import pandas as pd
-import matplotlib.pyplot as plt
+import 
 
 pd.options.display.max_columns = 30
 
@@ -13,7 +12,7 @@ df['kcat (1/min)'] = pd.to_numeric(df['kcat (1/min)'], errors='coerce')
 df = df.dropna(subset=['Yield (mg/mL)', 'kcat (1/min)'])
 
 # Plot
-#df.plot(kind='scatter', y='Yield (mg/mL)', x='kcat (1/min)')
-#plt.show()
+df.plot(kind='scatter', y='Yield (mg/mL)', x='kcat (1/min)')
+plt.show()
 
 print(df[['Yield (mg/mL)']].corrwith(df['kcat (1/min)']))
