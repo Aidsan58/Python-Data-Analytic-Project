@@ -1,4 +1,5 @@
 import numpy as np
+import pandas as pd
 
 def basic_stats(df, column):
     """Return basic stats for column"""
