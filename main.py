@@ -1,7 +1,7 @@
 from src.data_loader import load_csv
 from src.data_cleaning import clean_data
 from src.analysis import basic_stats
-from visualization import plot_histogram
+from src.visualization import plot_histogram
 
 DATA_PATH = "data/data.csv" # change this line if your data is located elsewhere
 
