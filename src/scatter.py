@@ -5,21 +5,15 @@ pd.options.display.max_columns = 30
 
 df = pd.read_csv('../data/data.csv')
 
-def is_number(s):
-    try:
-        float(s)
-        return True
-    except ValueError:
-        return False
+# Convert columns to numeric, force non-numeric values to NaN
+df['Yield (mg/mL)'] = pd.to_numeric(df['Yield (mg/mL)'], errors='coerce')
+df['kcat (1/min)'] = pd.to_numeric(df['kcat (1/min)'], errors='coerce')
 
-for x in df.index:
-    if is_number(df.loc[x, "Yield (mg/mL)"]) != True:
-        df.drop(x, inplace = True)
+# Drop rows where either value is missing (non-numeric)
+df = df.dropna(subset=['Yield (mg/mL)', 'kcat (1/min)'])
 
-for y in df.index:
-    if is_number(df.loc[y, "kcat (1/min)"]) != True:
-        df.drop(y, inplace = True)
+# Plot
+#df.plot(kind='scatter', y='Yield (mg/mL)', x='kcat (1/min)')
+#plt.show()
 
-df.plot(kind = 'scatter', x = 'Yield (mg/mL)', y = 'kcat (1/min)')
-
-plt.show()
+print(df[['Yield (mg/mL)']].corrwith(df['kcat (1/min)']))
